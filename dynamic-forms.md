@@ -38,6 +38,12 @@ The dynamic form component <dynamic-form /> is straight-forward You will only ne
    - SelectWithButtonsField
    - SelectWithGroupsField
       
+     
+call inputs type from   "@core/dynamic-forms"  like 
+         
+    import  {TextField} from "@core/dynamic-forms";
+     
+     
     <script setup lang="ts">
       const form =  reactive({
         id : 'your module name or what ever u need' ,
@@ -54,3 +60,28 @@ The dynamic form component <dynamic-form /> is straight-forward You will only ne
         ]
       });
     </script>
+    
+we have Validator type 
+   - required
+   - min
+   - max
+   - email
+   - minLength
+   - maxLength
+   - pattern
+   
+import { Validator, required, email } from "@core/dynamic-forms"   
+
+The Validator function takes 2 params, the validation function (required, min, max, email, etc) and the message to display when the validations are not successful:
+
+      {
+       email: EmailField({
+           label: 'Email',
+           validations: [
+               Validator({ validator: required, text: 'This field is required' }),
+               Validator({ validator: email, text: 'Format of email is incorrect' }),
+           ],
+       }),
+      }
+
+
