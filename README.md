@@ -1,6 +1,6 @@
-# ![How to use dynamic Tables , Forms , Modals]
+# ![How to use dynamic Tables]
 
-## dynamic Tables 
+
 For use dynamic table we need 
 
     - Our main table component name  IndexFullTable 
@@ -25,4 +25,39 @@ For use dynamic table we need
      
      3- create Ts class as child service  extends from DynamicService inside  service   folder in project root let call it OrderService.ts
      
-     4- make new Instance for JS service 
+     4- make new Instance for OrderService and pass first argument as 'orders' 
+     
+     5- create reactive varible require interface schema <ModuleMaterials>  and provide it for all child component 
+     
+     
+ ## Example 
+     <template>
+       <IndexFullTable>
+              <template #add-small-dialog>
+                <small-modal />
+              </template>
+              <template #add-full-dialog>
+                <large-modal />
+              </template>
+        </IndexFullTable>
+    </template>
+    
+    <script setup lang="ts">
+        const module = ref<string>('orders')
+        const myInstance =  new OrderService(module.value ,{});
+        const materials = reactive<ModuleMaterials>({
+              module : module.value,
+              form :  {},
+              create_schema: {},
+              create_form : {},
+            })
+            provide('moduleMaterials' , materials)
+            provide('myInstance' , myInstance)
+    </script>
+    
+    
+    
+    
+    
+    
+    
